@@ -1,0 +1,195 @@
+{
+  "title": "Navigation",
+  "expanded": true,
+  "children": [
+    {
+      "label": "Employee Search",
+      "icon": "search",
+      "action": "panel/employeesearch",
+      "leaf": true
+    },
+    {
+      "label": "Case Search",
+      "icon": "fa-solid fa-envelope-open-text",
+      "action": "work-inprogress",
+      "leaf": true,
+      "_comment": "action menupanel has been named as work-inprogress as of now"
+    },
+    {
+      "label": "Wizards",
+      "icon": "fa-magic",
+      "action": "work-inprogress",
+      "children": [
+        {
+          "label": "Add New Person",
+          "icon": "fa-list-alt",
+          "action": "work-inprogress",
+          "leaf": true
+        },
+        {
+          "label": "Terminate EE",
+          "icon": "fa-list-alt",
+          "action": "work-inprogress",
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "label": "Reports",
+      "icon": "fa-list-alt",
+      "action": "work-inprogress",
+      "leaf": true
+    },
+    {
+      "label": "Company Documents",
+      "icon": "fa-paste",
+      "action": "work-inprogress",
+      "leaf": true
+    },
+    {
+      "label": "The Library",
+      "icon": "fa-book-reader",
+      "action": "work-inprogress",
+      "children": [
+        {
+          "label": "Library Files",
+          "icon": "fa-copy",
+          "action": "work-inprogress",
+          "leaf": true
+        },
+        {
+          "label": "Library Books",
+          "icon": "fa-book",
+          "action": "work-inprogress",
+          "children": [
+            {
+              "label": "Chapters",
+              "icon": "fa-book-open",
+              "action": "work-inprogress",
+              "leaf": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Barcode Error Document",
+      "icon": "fa-list-alt",
+      "action": "work-inprogress",
+      "leaf": true
+    },
+    {
+      "label": "Person Search",
+      "icon": "fa-user",
+      "action": "work-inprogress",
+      "leaf": true
+    },
+    {
+      "label": "Other Searches",
+      "icon": "fa-search",
+      "action": "work-inprogress",
+      "children": [
+        {
+          "label": "item1",
+          "icon": "fa-list-alt",
+          "action": "work-inprogress",
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "label": "Calculation Queue",
+      "icon": "fa-list-alt",
+      "action": "work-inprogress",
+      "leaf": true
+    },
+    {
+      "label": "Submitted Jobs",
+      "icon": "fa-folder-open",
+      "action": "work-inprogress",
+      "children": [
+        {
+          "label": "Export Jobs",
+          "icon": "fa-list-alt",
+          "action": "work-inprogress",
+          "leaf": true
+        },
+        {
+          "label": "Batch Job Summary",
+          "icon": "fa-list-alt",
+          "action": "work-inprogress",
+          "leaf": true
+        },
+        {
+          "label": "Batch Jobs",
+          "icon": "fa-folder-open",
+          "action": "work-inprogress",
+          "children": [
+            {
+              "label": "Batch Kits",
+              "icon": "fa-list-alt",
+              "action": "work-inprogress",
+              "leaf": true
+            },
+            {
+              "label": "Batch Update DB",
+              "icon": "fa-list-alt",
+              "action": "work-inprogress",
+              "leaf": true
+            }
+          ]
+        },
+        {
+          "label": "Report Jobs",
+          "icon": "fa-list-alt",
+          "action": "work-inprogress",
+          "leaf": true
+        },
+        {
+          "label": "Test Case Jobs",
+          "icon": "fa-list-alt",
+          "action": "work-inprogress",
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "label": "Message Center",
+      "icon": "fa-list-alt",
+      "action": "work-inprogress",
+      "leaf": true
+    },
+    {
+      "label": "Tools",
+      "icon": "fa-folder-open",
+      "action": "work-inprogress",
+      "children": [
+        {
+          "label": "item1",
+          "icon": "fa-list-alt",
+          "action": "work-inprogress",
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "label": "Knowledge Base",
+      "icon": "fa-list-alt",
+      "action": "work-inprogress",
+      "leaf": true
+    },
+    {
+      "label": "Access Setup",
+      "icon": "fa-folder-open",
+      "action": "work-inprogress",
+      "children": [
+        {
+          "label": "item1",
+          "icon": "fa-list-alt",
+          "action": "work-inprogress",
+          "leaf": true
+        }
+      ]
+    }
+  ]
+}

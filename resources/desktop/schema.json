@@ -1,0 +1,289 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "entitySet": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Attribute"
+                    }
+                },
+                "trigger": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "entityRelationships": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "attributes"
+            ]
+        },
+        "layoutSet": {
+            "type": "object",
+            "properties": {
+                "form": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "const": "string"
+                        },
+                        "attributeName": {
+                            "type": "string"
+                        },
+                        "maxColumns": {
+                            "type": "integer"
+                        },
+                        "children": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/LayoutItem"
+                            }
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "attributeName",
+                        "maxColumns",
+                        "children"
+                    ]
+                }
+            },
+            "required": [
+                "form"
+            ]
+        }
+    },
+    "required": [
+        "entitySet",
+        "layoutSet"
+    ],
+    "allOf": [
+        {
+            "$ref": "#/definitions/ConsistencyCheck"
+        }
+    ],
+    "definitions": {
+        "Attribute": {
+            "type": "object",
+            "properties": {
+                "caption": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "api": {
+                    "type": "object"
+                },
+                "showRowNumber": {
+                    "type":"boolean"
+                },
+                "cls": {
+                    "type": "string"
+                },
+                "collapsible": {
+                    "type": "boolean"
+                },
+                "hidden": {
+                    "type": "boolean"
+                },
+                "dataKey": {
+                    "type": "string"
+                },
+                "parentId": {
+                    "type": "string"
+                },
+                "hyperlink": {
+                    "type": "string"
+                },
+                "action": {
+                    "type": "string"
+                },
+                "buttonIcon": {
+                    "type": "string"
+                },
+                "disabled": {
+                    "type": "boolean"
+                },
+                "bindkey": {
+                    "type": "string"
+                },
+                "multiSelect": {
+                    "type": "boolean"
+                },
+                "grow": {
+                    "type": "boolean"
+                },
+                "valueField": {
+                    "type": "string"
+                },
+                "displayField": {
+                    "type": "string"
+                },
+                "columnName": {
+                    "type": "string"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "readDataKey": {
+                    "type": "string"
+                },
+                "maxHeight": {
+                    "type": "integer"
+                },
+                "minHeight": {
+                    "type": "integer"
+                },
+                "maxWidth": {
+                    "type": "integer"
+                },
+                "minWidth": {
+                    "type": "integer"
+                },
+                "height": {
+                    "type":"integer"
+                },
+                "width": {
+                    "type": "integer"
+                },
+                "showCheckColumn": {
+                    "type": "boolean"
+                },
+                "componentActivateAction": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "searchKey": {
+                    "type": "string"
+                },
+                "targetGrid": {
+                    "type": "string"
+                }
+            },
+            "required": [
+            ]
+        },
+        "LayoutItem": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        },
+                        "attributeName": {
+                            "type": "string"
+                        },
+                        "maxColumns": {
+                            "type": "integer"
+                        },
+                        "columnSpan": {
+                            "type": "integer"
+                        },
+                        "header": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/LayoutItem"
+                            }
+                        },
+                        "caption":{
+                            "type": "string"
+                        },
+                        "isRequired": {
+                            "type": "boolean"
+                        },
+                        "hidden": {
+                            "type": "boolean"
+                        },
+                        "html":{
+                            "type": "string"
+                        },
+                        "cls":{
+                            "type": "string"
+                        },
+                        "children": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/LayoutItem"
+                            }
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "attributeName"
+                    ]
+                }
+            ]
+        },
+        "ConsistencyCheck": {
+            "then": {
+                "properties": {
+                    "layoutSet": {
+                        "properties": {
+                            "form": {
+                                "properties": {
+                                    "children": {
+                                        "items": {
+                                            "$ref": "#/definitions/LayoutItemConsistency"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "else": false
+        },
+        "LayoutItemConsistency": {
+            "properties": {
+                "attributeName": {
+                    "type": "string",
+                    "then": {
+                        "$ref": "#/definitions/LayoutItemConsistencyCheck"
+                    },
+                    "else": false
+                }
+            }
+        },
+        "LayoutItemConsistencyCheck": {
+            "properties": {
+                "entitySet": {
+                    "properties": {
+                        "attributes": {
+                            "additionalProperties": {
+                                "properties": {
+                                    "then": {
+                                        "$ref": "{$.attributeName}"
+                                    },
+                                    "else": false
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+.cls-hyperlinkStyle {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cls-hyperlinkStyle:hover {
+    color: red; /* Change color on hover */
+}
+
+tr td:last-child {
+    width: 100%;
+    white-space: nowrap;
+}
+
+.x-table-layout-ct,.x-table-layout {
+    width: 100% !important;
+}

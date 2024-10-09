@@ -1,0 +1,1435 @@
+{
+    "$schema": "./schema.json",
+    "entitySet": {
+        "name": "EmployeeSearch",
+        "entityRelationships": [],
+        "trigger": [],
+        "attributes": {
+            "searchtab": {
+                "name": "searchtab",
+                "caption": "Search",
+                "description": "Search",
+                "parentId": "employeeSearchTab"
+            },
+            "searchGroup": {
+                "maxColumns": 3,
+                "orientation": "Horizontal",
+                "stretchItems": "False",
+                "cls": "miscellaneous-tab"
+            },
+            "advanceSearchTab": {
+                "caption": "Advanced Search",
+                "description": "Advanced Search",
+                "parentId": "employeeSearchTab"
+            },
+            "resultGridPaging": {
+                "displayInfo": "True"
+            },
+            "recentSearchGrid": {
+                "caption": "Most Recent",
+                "showRowNumber": true,
+                "showCheckColumn": true,
+                "componentActivateAction": "loadGridStoreData",
+                "store": "recent-search",
+                "maxHeight": 400,
+                "showGrouping": true,
+                "parentId": "employeeSearchTab",
+                "api": {
+                    "read": "getmostrecentsearchemployee"
+                }
+            },
+            "resultGrid": {
+                "store": "personsearch",
+                "showRowNumber": true,
+                "infiniteGrid": true,
+                "api": {
+                    "post": "getemployeesearch",
+                    "autoload": false
+                },
+                "width": 800,
+                "tabTitle": "Result",
+                "caption": "Result",
+                "hidden": true,
+                "name": "resultGrid",
+                "maxHeight": 400,
+                "showExport": false,
+                "showGrouping": false,
+                "selModel": true,
+                "parentId": "employeeSearchTab"
+            },
+            "searchTabButton": {
+                "caption": "Search",
+                "action": "onSearch",
+                "searchParams": "recordId,firstName,lastName,name,ssn,employeeNum,hireDate,hireDateTo,termDate,termDateTo,division,location,union,lineOfBusiness",
+                "targetGrid": "resultGrid",
+                "targetStore": "personsearch",
+                "targetApi": {
+                    "post": "getemployeesearch"
+                },
+                "buttonIcon": "x-fa fa-search"
+            },
+            "updateButton": {
+                "caption": "Update",
+                "buttonIcon": "x-fas fa-redo",
+                "formBind": true,
+                "dataKey": "id",
+                "targetGrid": "detailPanel",
+                "parentId": "employeeDetailPanel",
+                "action": "onUpdateClick"
+            },
+            "deleteButton": {
+                "caption": "Delete",
+                "buttonIcon": "x-fas fa-times"
+            },
+            "workSheetButton": {
+                "caption": "Work Sheet",
+                "buttonIcon": "x-fas fa-redo",
+                "saveWork": "true",
+                "closable": true,
+                "title": "Work Sheet",
+                "action": "renderWorkSheetGrid",
+                "selectedGrid": "resultGrid",
+                "access": "Admin",
+                "parentId": "employeeSearchTab",
+                "readDataKey": "id"
+            },
+            "newRegressionCalcButton": {
+                "caption": "New Regression Calc",
+                "buttonIcon": "x-fas fa-calculator",
+                "renderScreen": "newRegressionCalcWindow",
+                "action": "renderwindow"
+            },
+            "exportBarCodesButton": {
+                "caption": "Export BarCodes",
+                "buttonIcon": "x-fas fa-file-export"
+            },
+            "advanceSearchGrid": {
+                "caption": "Condition 1",
+                "collapsible": "True",
+                "showRowNumber": true,
+                "showCheckColumn": true,
+                "height": 300,
+                "flex": 1
+            },
+            "recordperpage": {
+                "maxLength": "2",
+                "columnName": "recordperpage",
+                "caption": "Record per page",
+                "description": "Record per page",
+                "name": "recordperpage",
+                "value": 5,
+                "minimumValue": 0,
+                "hideTrigger": "False",
+                "reference": "recordperpage",
+                "valueAlign": "text-align: right"
+            },
+            "advanceSearchrecordperpage": {
+                "maxLength": "2",
+                "columnName": "recordperpage",
+                "caption": "Record per page",
+                "description": "Record per page",
+                "bindkey": "recordperpage",
+                "value": 5,
+                "minimumValue": 0,
+                "hideTrigger": "False",
+                "reference": "advancerecordperpage",
+                "valueAlign": "text-align: right"
+            },
+            "id": {
+                "maxLength": "20",
+                "columnName": "id",
+                "caption": "ID",
+                "description": "ID",
+                "value": ""
+            },
+            "recId": {
+                "maxLength": "20",
+                "caption": "Record ID",
+                "description": "Record ID",
+                "hideTrigger": true,
+                "searchKey": "recordId",
+                "trigger": [
+                    {
+                        "triggerAction": "change",
+                        "targetField": [
+                            "recordTo"
+                        ],
+                        "rule": [
+                            {
+                                "action": "disable",
+                                "value": "'{recId}' === '43'"
+                            }
+                        ]
+                    }
+                ],
+                "validator": [
+                    {
+                        "type": "lengthValidator",
+                        "minLength": 3,
+                        "maxLength": 40,
+                        "message": "Record ID must be between 3 and 40 characters"
+                    }
+                ]
+            },
+            "recordTo": {
+                "maxLength": "20",
+                "columnName": "recordTo",
+                "caption": "To",
+                "description": "To",
+                "name": "recordTo"
+            },
+            "recordToField": {
+                "maxLength": "20",
+                "columnName": "recordTo",
+                "caption": "To",
+                "description": "To",
+                "searchKey": "recordTo"
+            },
+            "lastName": {
+                "maxLength": "20",
+                "columnName": "lastName",
+                "caption": "Last Name",
+                "description": "Last Name",
+                "name": "lastName",
+                "value": "",
+                "trigger": [
+                    {
+                        "triggerAction": "disable",
+                        "targetField": [
+                            "hireDate",
+                            "hireDateTo"
+                        ],
+                        "rule": [
+                            {
+                                "action": "disable",
+                                "value": "'{firstName}' === 'darshan'"
+                            }
+                        ]
+                    },
+                    {
+                        "triggerAction": "blur",
+                        "targetField": [
+                            "ssn",
+                            "division"
+                        ],
+                        "rule": [
+                            {
+                                "action": "hide",
+                                "value": "'{lastName}' === 'hande'"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "lastNameField": {
+                "maxLength": "20",
+                "columnName": "lastName",
+                "caption": "Last Name",
+                "description": "Last Name",
+                "searchKey": "lastName",
+                "value": ""
+            },
+            "firstName": {
+                "maxLength": "20",
+                "columnName": "firstName",
+                "caption": "First Name",
+                "description": "First Name",
+                "name": "firstName",
+                "value": "",
+                "trigger": [
+                    {
+                        "triggerAction": "change",
+                        "targetField": [
+                            "lastName"
+                        ],
+                        "rule": [
+                            {
+                                "action": "disable",
+                                "value": "'{firstName}' === 'darshan'"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "firstNameField": {
+                "columnName": "firstName",
+                "caption": "First Name",
+                "description": "First Name",
+                "searchKey": "firstName"
+            },
+            "ssn": {
+                "columnName": "ssn",
+                "caption": "SSN",
+                "description": "SSN",
+                "name": "ssn",
+                "value": "",
+                "validator": [
+                    {
+                        "type": "lengthValidator",
+                        "minLength": 3,
+                        "maxLength": 11,
+                        "message": "SSN must be between 3 and 11 characters"
+                    },
+                    {
+                        "type": "regexValidator",
+                        "pattern": "^[\\d-]+$",
+                        "message": "SSN must be digits only"
+                    }
+                ]
+            },
+            "ssnField": {
+                "columnName": "ssn",
+                "caption": "SSN",
+                "description": "SSN",
+                "searchKey": "ssn",
+                "value": "",
+                "validator": [
+                    {
+                        "type": "lengthValidator",
+                        "minLength": 3,
+                        "maxLength": 11,
+                        "message": "SSN must be between 3 and 11 characters"
+                    },
+                    {
+                        "type": "regexValidator",
+                        "pattern": "^[\\d-]+$",
+                        "message": "SSN must be digits only"
+                    }
+                ]
+            },
+            "employeeNum": {
+                "maxLength": "20",
+                "columnName": "employeeNum",
+                "caption": "Employee Num",
+                "description": "Employee Num",
+                "value": "",
+                "name": "employeeNum"
+            },
+            "eNumField": {
+                "maxLength": "20",
+                "columnName": "employeeNum",
+                "caption": "Employee Num",
+                "description": "Employee Num",
+                "value": "",
+                "searchKey": "employeeNum"
+            },
+            "employeeNumField": {
+                "columnName": "employeeNum",
+                "caption": "Employee Num",
+                "description": "Employee Num",
+                "value": "",
+                "bindkey": "employeeNum"
+            },
+            "hireDate": {
+                "columnName": "hireDate",
+                "caption": "Hire Date",
+                "description": "Hire Date",
+                "format": "Y-m-d",
+                "value": "",
+                "name": "hireDate"
+            },
+            "hireDateField": {
+                "columnName": "hireDate",
+                "caption": "Hire Date",
+                "description": "Hire Date",
+                "format": "Y-m-d",
+                "value": "",
+                "searchKey": "hireDate"
+            },
+            "termDateDisplayField": {
+                "columnName": "termDate",
+                "caption": "Term Date",
+                "description": "Term Date",
+                "format": "Y-m-d",
+                "value": "",
+                "bindkey": "termDate"
+            },
+            "hireDateTo": {
+                "columnName": "hireDateTo",
+                "caption": "To",
+                "description": "Hire Date To",
+                "value": "",
+                "name": "hireDateTo"
+            },
+            "hireDateToField": {
+                "columnName": "hireDateTo",
+                "caption": "To",
+                "description": "Hire Date To",
+                "value": "",
+                "searchKey": "hireDateTo"
+            },
+            "termDate": {
+                "columnName": "termDate",
+                "caption": "Term Date",
+                "description": "Term Date",
+                "format": "Y-m-d",
+                "value": "",
+                "name": "termDate"
+            },
+            "termDateField": {
+                "columnName": "termDate",
+                "caption": "Term Date",
+                "description": "Term Date",
+                "format": "Y-m-d",
+                "value": "",
+                "searchKey": "termDate"
+            },
+            "termDateTo": {
+                "columnName": "termDateTo",
+                "caption": "To",
+                "description": "Term Date To",
+                "value": "",
+                "name": "termDateTo"
+            },
+            "termDateToField": {
+                "columnName": "termDateTo",
+                "caption": "To",
+                "description": "Term Date To",
+                "value": "",
+                "searchKey": "termDateTo"
+            },
+            "division": {
+                "columnName": "division",
+                "caption": "Division",
+                "description": "Division",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "grow": false,
+                "value": "",
+                "name": "division",
+                "store": "division",
+                "api": {
+                    "read": "division",
+                    "autoload": true
+                }
+            },
+            "divisionField": {
+                "columnName": "division",
+                "caption": "Division",
+                "description": "Division",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "grow": false,
+                "value": "",
+                "searchKey": "division",
+                "store": "division",
+                "api": {
+                    "read": "division",
+                    "autoload": true
+                }
+            },
+            "location": {
+                "columnName": "location",
+                "caption": "Location",
+                "description": "Location",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "grow": false,
+                "value": "",
+                "name": "location",
+                "store": "location",
+                "api": {
+                    "read": "location",
+                    "autoload": true
+                }
+            },
+            "locationField": {
+                "columnName": "location",
+                "caption": "Location",
+                "description": "Location",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "grow": false,
+                "value": "",
+                "searchKey": "location",
+                "store": "location",
+                "api": {
+                    "read": "location",
+                    "autoload": true
+                }
+            },
+            "union": {
+                "columnName": "union",
+                "caption": "Union",
+                "description": "Union",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "grow": false,
+                "value": "",
+                "name": "union",
+                "store": "union",
+                "api": {
+                    "read": "union",
+                    "autoload": true
+                }
+            },
+            "unionField": {
+                "columnName": "union",
+                "caption": "Union",
+                "description": "Union",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "grow": false,
+                "value": "",
+                "searchKey": "union",
+                "store": "union",
+                "api": {
+                    "read": "union",
+                    "autoload": true
+                }
+            },
+            "lineOfBusiness": {
+                "columnName": "lineOfBusiness",
+                "caption": "Line of Business",
+                "description": "Line of Business",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "grow": false,
+                "value": "",
+                "name": "lineOfBusiness",
+                "store": "lineOfBusiness",
+                "api": {
+                    "read": "lineOfBusiness",
+                    "autoload": true
+                }
+            },
+            "lineOfBusinessField": {
+                "columnName": "lineOfBusiness",
+                "caption": "Line of Business",
+                "description": "Line of Business",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "grow": false,
+                "value": "",
+                "searchKey": "lineOfBusiness",
+                "store": "lineOfBusiness",
+                "api": {
+                    "read": "lineOfBusiness",
+                    "autoload": true
+                }
+            },
+            "lineOfBusinessColumn": {
+                "caption": "Line of Business",
+                "dataKey": "lineOfBusiness",
+                "value": ""
+            },
+            "idColumn": {
+                "caption": "Record ID",
+                "dataKey": "id",
+                "targetGrid": "detailPanel",
+                "parentId": "employeeDetailPanel",
+                "hyperlink": "onRecIdClick",
+                "filter": "number",
+                "viewToLoad": "employee-detail"
+            },
+            "firstNameColumn": {
+                "caption": "First Name",
+                "dataKey": "firstName",
+                "filter": "string"
+            },
+            "lastNameColumn": {
+                "caption": "Last Name",
+                "dataKey": "lastName",
+                "filter": "string"
+            },
+            "ssnColumn": {
+                "caption": "SSN",
+                "dataKey": "ssn",
+                "filter": "string"
+            },
+            "empnumColumn": {
+                "caption": "Employee Num",
+                "dataKey": "employeeNum",
+                "filter": "string"
+            },
+            "divisionColumn": {
+                "caption": "Division",
+                "dataKey": "division",
+                "filter": "string"
+            },
+            "locationColumn": {
+                "caption": "Location",
+                "dataKey": "location",
+                "filter": "string"
+            },
+            "ESSColumn": {
+                "caption": "ESS",
+                "dataKey": "EA_SC3",
+                "filter": "string"
+            },
+            "calcColumn": {
+                "caption": "Calc",
+                "dataKey": "Calc",
+                "filter": "string"
+            },
+            "caseColumn": {
+                "caption": "Case",
+                "dataKey": "Case",
+                "filter": "string"
+            },
+            "recentlyviewedColumn": {
+                "caption": "Recently Viwed",
+                "dataKey": "LastViewedDt",
+                "filter": "string"
+            },
+            "unionColumn": {
+                "caption": "Union",
+                "dataKey": "union",
+                "filter": "string"
+            },
+            "employeeSearchTab": {
+                "name": "employeeSearchTab",
+                "caption": "Search : Employee",
+                "collapsible": "True"
+            },
+            "suppressFatalError": {
+                "caption": "Suppress Fatal Error",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "value": "NULL",
+                "bindkey": "suppressFatalError",
+                "name": "suppressFatalError",
+                "store": [
+                    {
+                        "displayValue": "--Not Selected--",
+                        "value": "NULL"
+                    },
+                    {
+                        "displayValue": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "displayValue": "No",
+                        "value": "no"
+                    }
+                ]
+            },
+            "hassingleLifeAnnuity": {
+                "caption": "Has Single Life Annuity?",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "value": "NULL",
+                "bindkey": "hassingleLifeAnnuity",
+                "name": "hassingleLifeAnnuity",
+                "store": [
+                    {
+                        "displayValue": "--Not Selected--",
+                        "value": "NULL"
+                    },
+                    {
+                        "displayValue": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "displayValue": "No",
+                        "value": "no"
+                    }
+                ]
+            },
+            "singleLifeAnnuity": {
+                "caption": "Single Life Annuity",
+                "bindkey": "singleLifeAnnuity",
+                "value": ""
+            },
+            "has5YearCertainandLifeAnnuity": {
+                "caption": "Has 5-Year Certain & Life Annuity?",
+                "store": [
+                    {
+                        "displayValue": "--Not Selected--",
+                        "value": "NULL"
+                    },
+                    {
+                        "displayValue": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "displayValue": "No",
+                        "value": "no"
+                    }
+                ],
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "value": "NULL",
+                "bindkey": "has5YearCertainandLifeAnnuity",
+                "name": "has5YearCertainandLifeAnnuity"
+            },
+            "FiveYearCertainandLifeAnnuity": {
+                "caption": "5-Year Certain & Life Annuity",
+                "description": "5-Year Certain & Life Annuity",
+                "bindkey": "FiveYearCertainandLifeAnnuity",
+                "value": ""
+            },
+            "has10YearCertainandLifeAnnuity": {
+                "caption": "Has 10-Year Certain & Life Annuity?",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "value": "NULL",
+                "bindkey": "has10YearCertainandLifeAnnuity",
+                "name": "has10YearCertainandLifeAnnuity",
+                "store": [
+                    {
+                        "displayValue": "--Not Selected--",
+                        "value": "NULL"
+                    },
+                    {
+                        "displayValue": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "displayValue": "No",
+                        "value": "no"
+                    }
+                ]
+            },
+            "TenYearCertainandLifeAnnuity": {
+                "caption": "10-Year Certain & Life Annuity",
+                "bindkey": "TenYearCertainandLifeAnnuity",
+                "value": ""
+            },
+            "has15YearCertainandLifeAnnuity": {
+                "caption": "Has 15-Year Certain & Life Annuity?",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "value": "NULL",
+                "bindkey": "has15YearCertainandLifeAnnuity",
+                "name": "has15YearCertainandLifeAnnuity",
+                "store": [
+                    {
+                        "displayValue": "--Not Selected--",
+                        "value": "NULL"
+                    },
+                    {
+                        "displayValue": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "displayValue": "No",
+                        "value": "no"
+                    }
+                ]
+            },
+            "is15YearCertainandLifeAnnuity": {
+                "caption": "15-Year Certain & Life Annuity",
+                "bindkey": "is15YearCertainandLifeAnnuity",
+                "value": ""
+            },
+            "hasLevelIncometo62Annuity": {
+                "caption": "Has Level Income to 62 Annuity?",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "value": "NULL",
+                "bindkey": "hasLevelIncometo62Annuity",
+                "name": "hasLevelIncometo62Annuity",
+                "store": [
+                    {
+                        "displayValue": "--Not Selected--",
+                        "value": "NULL"
+                    },
+                    {
+                        "displayValue": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "displayValue": "No",
+                        "value": "no"
+                    }
+                ]
+            },
+            "hasLevelIncometo65Annuity": {
+                "caption": "Has Level Income to 62 Annuity?",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "value": "NULL",
+                "bindkey": "hasLevelIncometo65Annuity",
+                "name": "hasLevelIncometo65Annuity",
+                "store": [
+                    {
+                        "displayValue": "--Not Selected--",
+                        "value": "NULL"
+                    },
+                    {
+                        "displayValue": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "displayValue": "No",
+                        "value": "no"
+                    }
+                ]
+            },
+            "LevelIncometo62Pre62Amount": {
+                "caption": "Level Income to 62 Pre-62 Annuity?",
+                "bindkey": "LevelIncometo62Pre62Amount",
+                "value": ""
+            },
+            "LevelIncometo62Post62Amount": {
+                "caption": "Level Income to 62 Post-62 Annuity?",
+                "bindkey": "LevelIncometo62Post62Amount",
+                "value": ""
+            },
+            "has50JointandSurvivorAnnuity": {
+                "caption": "Has 50 % Joint & Survivor Annuity?",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "value": "NULL",
+                "bindkey": "has50JointandSurvivorAnnuity",
+                "name": "has50JointandSurvivorAnnuity",
+                "store": [
+                    {
+                        "displayValue": "--Not Selected--",
+                        "value": "NULL"
+                    },
+                    {
+                        "displayValue": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "displayValue": "No",
+                        "value": "no"
+                    }
+                ]
+            },
+            "LevelIncometo65Pre65Amount": {
+                "caption": "Level Income to 65 Pre-65 Annuity?",
+                "bindkey": "LevelIncometo65Pre65Amount",
+                "value": ""
+            },
+            "LevelIncometo65Post65Amount": {
+                "caption": "Level Income to 65 Post-65 Annuity?",
+                "bindkey": "LevelIncometo65Post65Amount",
+                "value": ""
+            },
+            "is50JointandSurvivorAnnuity": {
+                "caption": "50 Joint & Survivor Annuity",
+                "bindkey": "is50JointandSurvivorAnnuity",
+                "value": ""
+            },
+            "is50JointandSurvivorAnnuityBeneficiary": {
+                "caption": "50 Joint & Survivor Annuity (Beneficiary)",
+                "bindkey": "is50JointandSurvivorAnnuityBeneficiary",
+                "value": ""
+            },
+            "has60JointandSurvivorAnnuity": {
+                "caption": "Has 60 % Joint & Survivor Annuity?",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "value": "NULL",
+                "bindkey": "has60JointandSurvivorAnnuity",
+                "name": "has60JointandSurvivorAnnuity",
+                "store": [
+                    {
+                        "displayValue": "--Not Selected--",
+                        "value": "NULL"
+                    },
+                    {
+                        "displayValue": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "displayValue": "No",
+                        "value": "no"
+                    }
+                ]
+            },
+            "is60JointandSurvivorAnnuity": {
+                "caption": "60 % Joint & Survivor Annuity",
+                "bindkey": "is60JointandSurvivorAnnuity",
+                "value": ""
+            },
+            "is60JointandSurvivorAnnuityBeneficiary": {
+                "caption": "60 % Joint & Survivor Annuity (Beneficiary)",
+                "bindkey": "is60JointandSurvivorAnnuityBeneficiary",
+                "value": ""
+            },
+            "has66and2by3JointandSurvivorAnnuity": {
+                "caption": "Has 66 2/3% Joint & Survivor Annuity?",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "value": "NULL",
+                "bindkey": "has66and2by3JointandSurvivorAnnuity",
+                "name": "has66and2by3JointandSurvivorAnnuity",
+                "store": [
+                    {
+                        "displayValue": "--Not Selected--",
+                        "value": "NULL"
+                    },
+                    {
+                        "displayValue": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "displayValue": "No",
+                        "value": "no"
+                    }
+                ]
+            },
+            "is66and2by3JointandSurvivorAnnuity": {
+                "caption": "66 2/3% Joint & Survivor Annuity",
+                "bindkey": "is66and2by3JointandSurvivorAnnuity",
+                "value": ""
+            },
+            "is66and2by3JointandSurvivorAnnuityBeneficiary": {
+                "caption": "66 2/3% Joint & Survivor Annuity (Beneficiary)",
+                "bindkey": "is66and2by3JointandSurvivorAnnuityBeneficiary",
+                "value": ""
+            },
+            "has75JointandSurvivorAnnuity": {
+                "caption": "Has 75 % Joint & Survivor Annuity?",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "value": "NULL",
+                "bindkey": "has75JointandSurvivorAnnuity",
+                "name": "has75JointandSurvivorAnnuity",
+                "store": [
+                    {
+                        "displayValue": "--Not Selected--",
+                        "value": "NULL"
+                    },
+                    {
+                        "displayValue": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "displayValue": "No",
+                        "value": "no"
+                    }
+                ]
+            },
+            "is75JointandSurvivorAnnuity": {
+                "caption": "75 % Joint & Survivor Annuity",
+                "bindkey": "is75JointandSurvivorAnnuity",
+                "value": ""
+            },
+            "is75JointandSurvivorAnnuityBeneficiary": {
+                "caption": "75 % Joint & Survivor Annuity (Beneficiary)",
+                "bindkey": "is75JointandSurvivorAnnuityBeneficiary",
+                "value": ""
+            },
+            "has100JointandSurvivorAnnuity": {
+                "caption": "Has 100 % Joint & Survivor Annuity?",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "value": "NULL",
+                "bindkey": "has100JointandSurvivorAnnuity",
+                "name": "has100JointandSurvivorAnnuity",
+                "store": [
+                    {
+                        "displayValue": "--Not Selected--",
+                        "value": "NULL"
+                    },
+                    {
+                        "displayValue": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "displayValue": "No",
+                        "value": "no"
+                    }
+                ]
+            },
+            "is100JointandSurvivorAnnuity": {
+                "caption": "100 % Joint & Survivor Annuity",
+                "bindkey": "is100JointandSurvivorAnnuity",
+                "value": ""
+            },
+            "is100JointandSurvivorAnnuityBeneficiary": {
+                "caption": "100 % Joint & Survivor Annuity (Beneficiary)",
+                "bindkey": "is100JointandSurvivorAnnuityBeneficiary",
+                "value": ""
+            },
+            "hasLumpSum": {
+                "caption": "Has Lump Sum",
+                "displayField": "displayValue",
+                "valueField": "value",
+                "multiSelect": false,
+                "value": "NULL",
+                "bindkey": "hasLumpSum",
+                "name": "hasLumpSum",
+                "store": [
+                    {
+                        "displayValue": "--Not Selected--",
+                        "value": "NULL"
+                    },
+                    {
+                        "displayValue": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "displayValue": "No",
+                        "value": "no"
+                    }
+                ]
+            },
+            "LumpSum": {
+                "caption": "Lump Sum",
+                "bindkey": "LumpSum",
+                "value": ""
+            },
+            "newRegressionCalcWindow": {
+                "popup": true,
+                "height": 500,
+                "width": 600
+            }
+        }
+    },
+    "layoutSet": {
+        "form": {
+            "type": "TabGroup",
+            "attributeName": "employeeSearchTab",
+            "triggerActionTabChange": "onTabChange",
+            "maxColumns": 1,
+            "children": [
+                {
+                    "type": "Tab",
+                    "attributeName": "searchtab",
+                    "maxColumns": 1,
+                    "componentActivateAction": "onSearchTabActivate",
+                    "header": [
+                        {
+                            "type": "Button",
+                            "attributeName": "searchTabButton"
+                        }
+                    ],
+                    "children": [
+                        {
+                            "type": "Form",
+                            "attributeName": "searchGroup",
+                            "children": [
+                                {
+                                    "type": "Field",
+                                    "attributeName": "recId"
+                                },
+                                {
+                                    "type": "Field",
+                                    "attributeName": "recordToField",
+                                    "columnSpan": 2
+                                },
+                                {
+                                    "type": "Field",
+                                    "attributeName": "lastNameField",
+                                    "columnSpan": 3
+                                },
+                                {
+                                    "type": "Field",
+                                    "attributeName": "firstNameField",
+                                    "columnSpan": 3
+                                },
+                                {
+                                    "type": "Field",
+                                    "attributeName": "ssnField",
+                                    "columnSpan": 3
+                                },
+                                {
+                                    "type": "Field",
+                                    "attributeName": "eNumField",
+                                    "columnSpan": 3
+                                },
+                                {
+                                    "type": "DateField",
+                                    "attributeName": "hireDateField"
+                                },
+                                {
+                                    "type": "DateField",
+                                    "attributeName": "hireDateToField",
+                                    "columnSpan": 2
+                                },
+                                {
+                                    "type": "DateField",
+                                    "attributeName": "termDateField"
+                                },
+                                {
+                                    "type": "DateField",
+                                    "attributeName": "termDateToField",
+                                    "columnSpan": 2
+                                },
+                                {
+                                    "type": "DropDown",
+                                    "attributeName": "divisionField",
+                                    "columnSpan": 3
+                                },
+                                {
+                                    "type": "DropDown",
+                                    "attributeName": "locationField",
+                                    "columnSpan": 3
+                                },
+                                {
+                                    "type": "DropDown",
+                                    "attributeName": "unionField",
+                                    "columnSpan": 3
+                                },
+                                {
+                                    "type": "DropDown",
+                                    "attributeName": "lineOfBusinessField",
+                                    "columnSpan": 3
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Group",
+                            "maxColumns": 1,
+                            "orientation": "Horizontal",
+                            "stretchItems": "False",
+                            "children": [
+                                {
+                                    "type": "NumberField",
+                                    "attributeName": "recordperpage"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Tab",
+                    "attributeName": "advanceSearchTab",
+                    "scrollable": true,
+                    "componentActivateAction": "onSearchTabActivate",
+                    "children": [
+                        {
+                            "type": "Group",
+                            "attributeName": "conditionPanel",
+                            "name": "paneltoadd",
+                            "children": [
+                                {
+                                    "type": "Group",
+                                    "collapsible": true,
+                                    "name": "advancesearchcondition",
+                                    "caption": "Condition 1",
+                                    "children": [
+                                        {
+                                            "type": "AdvanceSearch",
+                                            "tableStore": {
+                                                "data": [
+                                                    {
+                                                        "text": "Employee",
+                                                        "value": "Persons"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Group",
+                                    "children": [
+                                        {
+                                            "type": "NumberField",
+                                            "attributeName": "advanceSearchrecordperpage"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "AdvanceSearchPanel"
+                                }
+                            ]
+                        }
+                    ],
+                    "header": [
+                        {
+                            "type": "MySearchHeader"
+                        }
+                    ],
+                    "footer": [
+                        {}
+                    ]
+                },
+                {
+                    "type": "Grid",
+                    "attributeName": "recentSearchGrid",
+                    "maxColumns": 1,
+                    "componentActivateAction": "onSearchTabActivate",
+                    "children": [
+                        {
+                            "attributeName": "idColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "firstNameColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "lastNameColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "ssnColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "empnumColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "divisionColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "locationColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "unionColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "recentlyviewedColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "caseColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "calcColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "ESSColumn",
+                            "type": "Column"
+                        }
+                    ],
+                    "header": [
+                        {}
+                    ],
+                    "footer": [
+                        {
+                            "type": "PagingBar",
+                            "attributeName": "resultGridPaging"
+                        }
+                    ],
+                    "plugins": {
+                        "ptype": "cellediting",
+                        "clicksToEdit": 1
+                    }
+                },
+                {
+                    "type": "Grid",
+                    "attributeName": "resultGrid",
+                    "maxColumns": 1,
+                    "componentActivateAction": "onSearchTabActivate",
+                    "children": [
+                        {
+                            "attributeName": "idColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "firstNameColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "lastNameColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "ssnColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "empnumColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "divisionColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "locationColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "unionColumn",
+                            "type": "Column"
+                        },
+                        {
+                            "attributeName": "lineOfBusinessColumn",
+                            "type": "Column"
+                        }
+                    ],
+                    "header": [
+                        {
+                            "type": "Button",
+                            "attributeName": "updateButton"
+                        },
+                        {
+                            "type": "Button",
+                            "attributeName": "workSheetButton",
+                            "access": "Admin"
+                        },
+                        {
+                            "type": "Spacer"
+                        },
+                        {
+                            "type": "Button",
+                            "attributeName": "newRegressionCalcButton"
+                        },
+                        {
+                            "type": "Button",
+                            "attributeName": "exportBarCodesButton"
+                        }
+                    ],
+                    "footer": [
+                        {}
+                    ],
+                    "plugins": {
+                        "ptype": "cellediting",
+                        "clicksToEdit": 1
+                    }
+                },
+                {
+                    "type": "Form",
+                    "cls": "newRegression-window",
+                    "attributeName": "newRegressionCalcWindow",
+                    "children": [
+                        {
+                            "type": "DropDown",
+                            "attributeName": "suppressFatalError"
+                        },
+                        {
+                            "type": "DropDown",
+                            "attributeName": "hassingleLifeAnnuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "singleLifeAnnuity"
+                        },
+                        {
+                            "type": "DropDown",
+                            "attributeName": "has5YearCertainandLifeAnnuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "FiveYearCertainandLifeAnnuity"
+                        },
+                        {
+                            "type": "DropDown",
+                            "attributeName": "has10YearCertainandLifeAnnuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "TenYearCertainandLifeAnnuity"
+                        },
+                        {
+                            "type": "DropDown",
+                            "attributeName": "has15YearCertainandLifeAnnuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "is15YearCertainandLifeAnnuity"
+                        },
+                        {
+                            "type": "DropDown",
+                            "attributeName": "hasLevelIncometo62Annuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "LevelIncometo62Pre62Amount"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "LevelIncometo62Post62Amount"
+                        },
+                        {
+                            "type": "DropDown",
+                            "attributeName": "hasLevelIncometo65Annuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "LevelIncometo65Pre65Amount"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "LevelIncometo65Post65Amount"
+                        },
+                        {
+                            "type": "DropDown",
+                            "attributeName": "has50JointandSurvivorAnnuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "is50JointandSurvivorAnnuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "is50JointandSurvivorAnnuityBeneficiary"
+                        },
+                        {
+                            "type": "DropDown",
+                            "attributeName": "has60JointandSurvivorAnnuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "is60JointandSurvivorAnnuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "is60JointandSurvivorAnnuityBeneficiary"
+                        },
+                        {
+                            "type": "DropDown",
+                            "attributeName": "has66and2by3JointandSurvivorAnnuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "is66and2by3JointandSurvivorAnnuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "is66and2by3JointandSurvivorAnnuityBeneficiary"
+                        },
+                        {
+                            "type": "DropDown",
+                            "attributeName": "has75JointandSurvivorAnnuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "is75JointandSurvivorAnnuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "is75JointandSurvivorAnnuityBeneficiary"
+                        },
+                        {
+                            "type": "DropDown",
+                            "attributeName": "has100JointandSurvivorAnnuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "is100JointandSurvivorAnnuity"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "is100JointandSurvivorAnnuityBeneficiary"
+                        },
+                        {
+                            "type": "DropDown",
+                            "attributeName": "hasLumpSum"
+                        },
+                        {
+                            "type": "Field",
+                            "attributeName": "LumpSum"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

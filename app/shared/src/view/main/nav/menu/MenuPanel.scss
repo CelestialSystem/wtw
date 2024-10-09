@@ -1,0 +1,8 @@
+.#{$prefix}treelist-root-container.#{$prefix}widget,
+.#{$prefix}treelist-nav .#{$prefix}treelist-item-expanded .#{$prefix}treelist-item {
+  background-color:white;
+}
+
+.#{$prefix}treelist-nav .#{$prefix}treelist-item-text {
+    font-size: 12px !important;
+}

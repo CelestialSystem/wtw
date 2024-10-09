@@ -1,0 +1,397 @@
+@include extjs-button-toolbar-small-ui(
+  $ui: 'toolbutton',
+  $font-size: 24px,
+  $padding: 5px 10px 5px 10px,
+	$background-color: transparent,
+	$glyph-color: white,
+  $border-color: transparent
+);
+
+.#{$prefix}panel-header-title-default > .#{$prefix}title-text-default:after {
+  font-family: none;
+  content: '';
+}
+
+.form-cls .#{$prefix}panel-body-default{
+  background-color: #f1f1f1;
+}
+
+.form-cls .#{$prefix}form-item-label {
+  padding-right: 20px !important;
+}
+
+.mysearchcombo.#{$prefix}form-item {
+  display: block;
+  .#{$prefix}form-item-label-default {
+    padding-top: 8px;
+  }
+  .#{$prefix}form-item-body {
+    padding-top: 4px;
+  }
+}
+
+.tabpanel-cls .#{$prefix}panel-body-default{
+  background-color: #f1f1f1;
+  // padding: 5px;
+  // display: flex;
+  text-align: end;
+  border-width: 0px;
+}
+
+.panel-cls .#{$prefix}panel-body-default{
+  background-color: #f1f1f1;
+  // padding: 5px;
+  // display: table;
+  display: flex;
+  flex-direction: column;
+  text-align: end; /* Adjust alignment as needed */
+}
+
+.panel-cls .#{$prefix}btn-default-small {
+  border-color: #d1d1d1;
+  margin: 5px;
+}
+
+body.#{$prefix}border-layout-ct {
+  background-color: #e5e5e5;
+}
+.#{$prefix}treelist-nav .#{$prefix}treelist-item-selected > .#{$prefix}treelist-row,
+.#{$prefix}treelist-nav .#{$prefix}treelist-row-over{
+  background-color: #f1f1f1;
+}
+.#{$prefix}treelist-root-container.#{$prefix}widget,
+.#{$prefix}treelist-nav .#{$prefix}treelist-item-expanded .#{$prefix}treelist-item {
+  background-color:white;
+}
+
+.#{$prefix}treelist-nav .#{$prefix}treelist-item-text,
+.#{$prefix}treelist-nav .#{$prefix}treelist-item-text:hover,
+.#{$prefix}treelist-iem.ix-treelist-item-over .#{$prefix}treelist-item-text,
+.#{$prefix}treelist-nav .#{$prefix}treelist-row-over > * > .#{$prefix}treelist-item-text,
+.#{$prefix}treelist-nav .#{$prefix}treelist-row-over > * > .#{$prefix}treelist-item-icon,
+.#{$prefix}treelist-nav .#{$prefix}treelist-row-over > * > .#{$prefix}treelist-item-expander,
+.#{$prefix}treelist-nav .#{$prefix}treelist-item-icon,
+.#{$prefix}treelist-nav .#{$prefix}treelist-item-icon:hover,
+.#{$prefix}treelist-nav .#{$prefix}treelist-item-icon:focus,
+.#{$prefix}treelist-nav .#{$prefix}treelist-item-expander
+{
+  color: black;
+}
+
+.btnPressed {
+  background: #eaeaea;
+  border-color: #a4a4a4
+}
+
+.x-fa.fa-redo {
+  color: rgb(8, 114, 236);
+}
+
+.x-fa.fa-cancel {
+  color: red;
+}
+
+.fa.fa-plus {
+  color: green;
+}
+
+.fa.fa-copy, .fa.fa-wallet {
+  color: rgb(140, 196, 236);
+}
+
+.fa.fa-notes-medical, 
+.fa.fa-landmark, 
+.fa.fa-file-invoice-dollar, 
+.fa.fa-calculator, 
+.fa.fa-file-export,
+.x-fa.fa-user, 
+.x-fa.fa-user-tag,
+.x-fa.fa-fingerprint,
+.x-fa.fa-clock,
+.x-fa.fa-concierge-bell,
+.x-fa.fa-landmark,
+.x-fa.fa-box,
+.x-fa.fa-book,
+.x-fa.fa-calculator,
+.x-fa.fa-paperclip,
+.x-fa.fa-sticky-note {
+  color: #949494;
+}
+
+.grid-paging-toolbar {
+  .#{$prefix}form-item-label.#{$prefix}form-item-label-toolbar.#{$prefix}unselectable {
+    padding-top: 8px;
+  }
+  .#{$prefix}form-item-body.#{$prefix}form-item-body-toolbar.#{$prefix}form-display-field-body.#{$prefix}form-display-field-body-toolbar {
+    padding-top: 3px;
+  }
+}
+
+.#{$prefix}tool-tool-el.#{$prefix}tool-img.#{$prefix}tool-collapse-left,
+.#{$prefix}tool-tool-el.#{$prefix}tool-img.#{$prefix}tool-expand-right,
+.#{$prefix}tool-tool-el.#{$prefix}tool-img.#{$prefix}tool-collapse-top,
+.#{$prefix}tool-tool-el.#{$prefix}tool-img.#{$prefix}tool-expand-bottom {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+
+.#{$prefix}tool-tool-el.#{$prefix}tool-img.#{$prefix}tool-collapse-left {
+    background-image: url(desktop/images/tools/tool-sprites.gif);
+    transform: rotate(180deg);
+}
+
+.#{$prefix}tool-tool-el.#{$prefix}tool-img.#{$prefix}tool-expand-right {
+  background-image: url(desktop/images/tools/tool-sprites.gif);
+}
+
+.#{$prefix}tool-tool-el.#{$prefix}tool-img.#{$prefix}tool-collapse-top {
+  background-image: url(desktop/images/tools/minus.png);
+  background-color: grey;
+  background-blend-mode: color-dodge;
+}
+
+.#{$prefix}tool-tool-el.#{$prefix}tool-img.#{$prefix}tool-expand-bottom {
+  background-image: url(desktop/images/tools/plus.png);
+}
+
+.footer-cls {
+  .#{$prefix}panel-header-default {
+    background-image: none !important;
+    background-color: black !important;
+  }
+
+  .#{$prefix}panel-header-title-default > .#{$prefix}title-text-default {
+    color: white;
+  }
+}
+
+.#{$prefix}tab.#{$prefix}tab-active.#{$prefix}tab-default .#{$prefix}tab-inner-default {
+  color: #4d4d4d;
+}
+
+.#{$prefix}tab-inner.#{$prefix}tab-inner-default {
+  color: #4e4e4e;
+}
+
+.#{$prefix}tab.#{$prefix}unselectable.#{$prefix}box-item.#{$prefix}tab-default.#{$prefix}top.#{$prefix}tab-top.#{$prefix}tab-default-top.#{$prefix}tab-over {
+  background: #eaeaea;
+}
+
+.#{$prefix}tab.#{$prefix}unselectable.#{$prefix}tab-active.#{$prefix}box-item.#{$prefix}tab-default.#{$prefix}top.#{$prefix}tab-top.#{$prefix}tab-default-top {
+  background: #eaeaea;
+}
+
+.#{$prefix}toolbar-default .#{$prefix}toolbar-separator-horizontal {
+  border-left-color: #b3b1b1;
+}
+
+.#{$prefix}tab-default .#{$prefix}tab-close-btn {
+  background-color: white !important;
+  background-blend-mode: luminosity;
+  border-radius: 4px;
+}
+.#{$prefix}btn.#{$prefix}unselectable.#{$prefix}box-item.#{$prefix}toolbar-item.#{$prefix}btn-default-toolbar-small.#{$prefix}btn-over,
+.#{$prefix}btn.#{$prefix}unselectable.#{$prefix}btn-default-toolbar-small.#{$prefix}btn-over {
+  background: #eaeaea;
+  border-color: #a4a4a4
+}
+
+.#{$prefix}form-item-body.#{$prefix}form-item-body-default.#{$prefix}form-text-field-body.#{$prefix}form-text-field-body-default {
+  padding-left: 0px;
+} 
+
+.#{$prefix}tbar-page-number {
+  .#{$prefix}form-item-body.#{$prefix}form-item-body-default.#{$prefix}form-text-field-body.#{$prefix}form-text-field-body-default {
+    padding-left: 0px;
+  } 
+}
+
+.#{$prefix}form-item-body-default.#{$prefix}form-display-field-body-default {
+    padding-left: 20px;
+}
+
+.form-tab{
+    margin-left: 50px;
+}
+
+.detail-panel .x-table-layout {
+    padding-left: 50px;
+}
+
+.form-tab .#{$prefix}form-item-label-default{
+   padding-left: 50px;
+}
+
+.miscellaneous-overrideValuesGroup-tab .#{$prefix}form-item-label-inner {
+  display: flex;
+  text-align: end;
+  width: 250px !important;
+  flex-direction: column;
+}
+
+.miscellaneous-overrideValuesGroup-tab .x-form-item {
+  padding-left: 100px;
+}
+
+.miscellaneous-tab .x-form-item {
+  padding-left: 100px;
+}
+
+.advancesearchgrid {
+  .#{$prefix}grid-td {
+    vertical-align: middle;
+  }
+  .#{$prefix}item-disabled {
+    opacity: 0.5;
+  }
+}
+
+.no-dropdown .x-btn-wrap-default-small.x-btn-split-right:after {
+    background-image : none
+}
+
+.#{$prefix}form-item-label-inner {
+  display: flex  !important;
+  text-align: end;
+  width: 150px;
+  flex-direction: column;
+}
+
+.#{$prefix}combo-list-header {
+  font-weight: bold;
+  padding: 5px 0px;
+  margin-top: 5px;
+}
+
+.#{$prefix}panel-header-title-default > .#{$prefix}title-text-default {
+    text-transform: none;
+    padding: 0 2px 1px;
+    font-size: 12px;
+}
+
+.related-person-field .#{$prefix}form-text-default {
+  display: none;
+}
+
+.date-style {
+  .#{$prefix}form-item-label-text {
+    margin-right: 30px;
+  }
+}
+
+.newRegression-window .#{$prefix}panel-body-default
+{
+  padding-left: 50px;
+}
+
+.newRegression-window .#{$prefix}form-item-label {
+  padding-right: 160px !important;
+}
+
+.window-form {
+  .#{$prefix}form-item-label-inner {
+    margin-left: 80px;
+    text-align: left !important;
+    width: 160px !important;
+  }
+}
+
+.next-btn {
+  margin: 25px 0px 0px 140px
+}
+
+.submit-btn {
+  margin: 20px 0px 0px 205px;
+}
+
+.form-group {
+  .#{$prefix}panel-body-default {
+    border-color: transparent;
+    margin-top: 30px;
+  }
+}
+
+.notes {
+  .#{$prefix}form-item-label-inner {
+    margin-top: 24px;
+  }
+}
+
+.#{$prefix}grid-item-selected,
+.#{$prefix}grid-item-selected .#{$prefix}grid-cell-special {
+  background: #cccccc;
+}
+
+.#{$prefix}menu-item-default.#{$prefix}menu-item-focus, .#{$prefix}menu-item-default.#{$prefix}menu-item-active {
+  background-color: #eaeaea;
+  border: #a4a4a4;
+  background-image: none;
+}
+
+.#{$prefix}box-scroller-toolbar-default.#{$prefix}box-scroller-left,
+.#{$prefix}box-scroller-toolbar-default.#{$prefix}box-scroller-right
+ {
+  background-color: grey;
+  background-blend-mode: luminosity;
+  border-color: #a4a4a4;
+}
+
+
+$panel-navigation-background-color: darken($base-color, 20%);
+$nav-base-color: lighten($panel-navigation-background-color, 20%);
+$nav-text-color: white;
+
+$nav-indicator-color: lighten($panel-navigation-background-color, 30%);
+$nav-indicator-color-over: lighten($panel-navigation-background-color, 40%);
+
+$nav-bg-color-over: lighten($nav-base-color, 10%);
+$nav-bg-color-selected: lighten($nav-base-color, 5%);
+
+$nav-text-color-over: lighten($nav-text-color, 20%);
+
+$nav-font-size: $font-size;
+
+@include treelist-ui(
+	$ui: 'nav',
+
+	$row-indicator-width: 5px,
+	$row-indicator-selected-color: $nav-indicator-color,
+	$row-indicator-selected-over-color: lighten($panel-navigation-background-color, 7%),
+	$row-indicator-over-color: $nav-indicator-color-over,
+
+	$padding: 0px 10px 0 10px,
+	$item-icon-width: 24px,
+	$item-text-icon-gap: 20px,
+	$item-expander-width: 24px,
+
+	$item-icon-font-size: $nav-font-size,
+	$item-text-font-size: $nav-font-size,
+	$item-expander-font-size: $nav-font-size,
+
+	$item-line-height : 30px,
+	$item-text-overflow: initial,
+
+	$background-color: $panel-navigation-background-color,
+	$item-icon-color: $nav-text-color,
+	$item-text-color: $nav-text-color,
+	$item-expander-color: $nav-text-color,
+	$item-icon-over-color: $nav-text-color-over,
+	$item-text-over-color: $nav-text-color-over,
+	$item-expander-over-color: $nav-text-color-over,
+
+	$item-expanded-child-background-color: $nav-base-color,
+
+	$item-expanded-background-color: transparent,
+
+	$row-over-background-color: $nav-bg-color-over,
+
+	$row-selected-background-color: $nav-bg-color-selected,
+	$toolstrip-background-color:  $nav-base-color,
+	$tool-selected-color: $nav-text-color-over,
+	$tool-selected-background-color: $nav-bg-color-over,
+	$tool-float-indicator-color: $nav-indicator-color-over,
+	$tool-float-indicator-width: 4px
+);
